@@ -22,3 +22,5 @@
 
 .idea
 coverage
+test/html_reports/
+test/reports/

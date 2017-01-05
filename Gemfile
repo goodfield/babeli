@@ -17,7 +17,12 @@ group :development, :test do
 end
 
 group :test do
-  gem 'coveralls', require: false
+  gem 'minitest-reporters'
+  gem 'factory_girl_rails'
+  gem 'ffaker'
+  gem 'coveralls'
+  gem 'capybara'
+  gem 'selenium-webdriver'
 end
 
 group :development do
