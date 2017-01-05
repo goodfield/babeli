@@ -16,6 +16,10 @@ group :development, :test do
 
 end
 
+group :test do
+  gem 'coveralls', require: false
+end
+
 group :development do
   gem 'web-console'
   gem 'listen', '~> 3.0.5'
