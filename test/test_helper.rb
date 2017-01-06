@@ -7,23 +7,17 @@ require 'capybara/rails'
 require 'selenium/webdriver'
 
 if ENV['SAUCE_ACCESS_KEY']
-  caps = {
-      :platform => 'Windows 7',
-      :browserName => 'Chrome',
-      :version => '45',
-      'tunnel-identifier' => ENV['TRAVIS_JOB_NUMBER']
-  }
-
   Capybara.register_driver 'sauce' do |app|
     Capybara::Selenium::Driver.new(app,
                                    browser: :remote,
                                    url: "https://#{ENV['SAUCE_USERNAME']}:#{ENV['SAUCE_ACCESS_KEY']}@ondemand.saucelabs.com:443/wd/hub",
-                                   desired_capabilities: caps)
+                                   desired_capabilities: $selenium_capabilities)
   end
 
   Capybara.default_driver = 'sauce'
   Capybara.javascript_driver = 'sauce'
 else
+  puts $selenium_capabilities
   Capybara.default_driver = :selenium
 end
 
