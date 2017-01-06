@@ -34,6 +34,10 @@ class ActionDispatch::IntegrationTest
 
   self.use_transactional_tests = false
 
+  def setup
+    Capybara.default_driver = :selenium
+  end
+
   def teardown
     Capybara.reset_sessions!
     Warden.test_reset!
