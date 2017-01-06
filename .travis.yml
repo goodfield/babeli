@@ -18,5 +18,5 @@ env:
   - PLATFORM="Windows 7" BROWSER="Firefox"
   - PLATFORM="Windows 7" BROWSER="Opera"
   - PLATFORM="Windows 10" BROWSER="MicrosoftEdge"
-  - PLATFORM="macOS 10.12" BROWSER="Safari"
+  - PLATFORM="OS X 10.11" BROWSER="Safari"
 
