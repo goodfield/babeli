@@ -7,11 +7,14 @@ require 'capybara/rails'
 require 'selenium/webdriver'
 
 if ENV['TRAVIS']
-  capabilities = Selenium::WebDriver::Remote::Capabilities.send ENV['BROWSER']
-  capabilities.version = ENV['BROWSER_VERSION']
-  capabilities.platform = ENV['PLATFORM']
-  capabilities['tunnel-identifier'] = ENV['TRAVIS_JOB_NUMBER']
-  capabilities['name'] = "Travis ##{ENV['TRAVIS_JOB_NUMBER']}"
+
+  capabilities = {
+      :platform => ENV['PLATFORM'],
+      :browserName => ENV['PLATFORM'],
+      :version => ENV['BROWSER_VERSION'],
+      'tunnel-identifier'.to_sym => ENV['TRAVIS_JOB_NUMBER'],
+      :name => "Travis ##{ENV['TRAVIS_JOB_NUMBER']}"
+  }
 
   url = "https://#{ENV['SAUCE_USERNAME']}:#{ENV['SAUCE_ACCESS_KEY']}@ondemand.saucelabs.com:443/wd/hub"
 
