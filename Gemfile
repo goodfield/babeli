@@ -23,12 +23,6 @@ group :test do
   gem 'coveralls'
   gem 'capybara'
   gem 'selenium-webdriver'
-
-  if ENV['SAUCE_ACCESS_KEY']
-    gem 'sauce'
-    gem 'sauce-connect'
-  end
-
 end
 
 group :development do

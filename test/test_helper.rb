@@ -4,20 +4,20 @@ Coveralls.wear!
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require 'capybara/rails'
+require 'selenium/webdriver'
 
 if ENV['SAUCE_ACCESS_KEY']
-  require 'sauce'
-  require 'sauce/capybara'
+  caps = {
+      :platform => 'Windows 7',
+      :browserName => 'Chrome',
+      :version => '45'
+  }
 
-  Sauce.config do |config|
-    config[:browsers] = [
-        ['Windows 10', 'firefox', '50'],
-        ['Windows 10', 'chrome', '50'],
-        ['Windows 10', 'edge', '14.14393'],
-        ['Windows 7', 'internet_explorer', '11.0'],
-        ['macOS 10.12', 'safari', '10']
-    ]
-  end
+  Capybara.default_driver = Selenium::WebDriver.for(:remote,
+                                   :url => "https://#{ENV['SAUCE_USERNAME']}:#{ENV['SAUCE_ACCESS_KEY']}@ondemand.saucelabs.com:443/wd/hub",
+                                   :desired_capabilities => caps)
+else
+  Capybara.default_driver = :selenium
 end
 
 class ActiveSupport::TestCase
@@ -30,15 +30,6 @@ class ActionDispatch::IntegrationTest
   include Capybara::DSL
 
   self.use_transactional_tests = false
-
-  def setup
-    if ENV['SAUCE_ACCESS_KEY']
-      Capybara.default_driver = :sauce
-    else
-      Capybara.default_driver = :selenium
-    end
-  end
-
 
   def teardown
     Capybara.reset_sessions!
