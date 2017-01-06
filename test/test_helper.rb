@@ -10,7 +10,7 @@ if ENV['TRAVIS']
 
   capabilities = {
       :platform => ENV['PLATFORM'],
-      :browserName => ENV['PLATFORM'],
+      :browserName => ENV['BROWSER'],
       :version => ENV['BROWSER_VERSION'],
       'tunnel-identifier'.to_sym => ENV['TRAVIS_JOB_NUMBER'],
       :name => "Travis ##{ENV['TRAVIS_JOB_NUMBER']}"
