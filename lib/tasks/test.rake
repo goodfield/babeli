@@ -33,7 +33,7 @@ namespace :test do
 
     $selenium_capabilities = {
         :platform => 'Windows 10',
-        :browserName => 'edge',
+        :browserName => 'MicrosoftEdge',
         :version => '14.14393',
         'tunnel-identifier' => ENV['TRAVIS_JOB_NUMBER']
     }
