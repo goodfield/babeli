@@ -7,9 +7,9 @@ require 'capybara/rails'
 require 'selenium/webdriver'
 
 if ENV['TRAVIS']
-  capabilities = Selenium::WebDriver::Remote::Capabilities.send ENV['BROWSER_NAME']
+  capabilities = Selenium::WebDriver::Remote::Capabilities.send ENV['BROWSER']
   capabilities.version = ENV['BROWSER_VERSION']
-  capabilities.platform = ENV['BROWSER_PLATFORM']
+  capabilities.platform = ENV['PLATFORM']
   capabilities['tunnel-identifier'] = ENV['TRAVIS_JOB_NUMBER']
   capabilities['name'] = "Travis ##{ENV['TRAVIS_JOB_NUMBER']}"
 

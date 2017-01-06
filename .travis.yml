@@ -13,10 +13,10 @@ script:
   - bundle exec rake test
 
 env:
-  - BROWSER_PLATFORM="Windows 7" BROWSER_NAME="internet explorer"
-  - BROWSER_PLATFORM="Windows 7" BROWSER_NAME="Chrome"
-  - BROWSER_PLATFORM="Windows 7" BROWSER_NAME="Firefox"
-  - BROWSER_PLATFORM="Windows 7" BROWSER_NAME="Opera"
-  - BROWSER_PLATFORM="Windows 10" BROWSER_NAME="MicrosoftEdge"
-  - BROWSER_PLATFORM="macOS 10.12" BROWSER_NAME="Safari"
+  - PLATFORM="Windows 7" BROWSER="internet explorer"
+  - PLATFORM="Windows 7" BROWSER="Chrome"
+  - PLATFORM="Windows 7" BROWSER="Firefox"
+  - PLATFORM="Windows 7" BROWSER="Opera"
+  - PLATFORM="Windows 10" BROWSER="MicrosoftEdge"
+  - PLATFORM="macOS 10.12" BROWSER="Safari"
 
