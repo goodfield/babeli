@@ -15,31 +15,7 @@ namespace :test do
     Minitest.rake_run(['test/integration'])
   end
 
-  task :integration_ie  => 'test:prepare' do
-    $: << 'test'
 
-    $selenium_capabilities = {
-        :platform => 'Windows 7',
-        :browserName => 'internet explorer',
-        :version => '11.0',
-        'tunnel-identifier' => ENV['TRAVIS_JOB_NUMBER']
-    }
-
-    Minitest.rake_run(['test/integration'])
-  end
-
-  task :integration_edge  => 'test:prepare' do
-    $: << 'test'
-
-    $selenium_capabilities = {
-        :platform => 'Windows 10',
-        :browserName => 'MicrosoftEdge',
-        :version => '14.14393',
-        'tunnel-identifier' => ENV['TRAVIS_JOB_NUMBER']
-    }
-
-    Minitest.rake_run(['test/integration'])
-  end
 
   task :integration_chrome  => 'test:prepare' do
     $: << 'test'

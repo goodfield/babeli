@@ -8,12 +8,15 @@ addons:
   sauce_connect: true
 
 script:
-- bundle install
-- bundle exec rake db:create db:migrate db:seed RAILS_ENV=test
-- bundle exec rake test:units test:functionals
-- bundle exec rake test:integration_edge
-- bundle exec rake test:integration_ie
-- bundle exec rake test:integration_chrome
-- bundle exec rake test:integration_firefox
-- bundle exec rake test:integration_opera
-- bundle exec rake test:integration_safari
+  - bundle install
+  - bundle exec rake db:create db:migrate db:seed RAILS_ENV=test
+  - bundle exec rake test
+
+env:
+  - BROWSER_PLATFORM="Windows 7" BROWSER_NAME="internet explorer"
+  - BROWSER_PLATFORM="Windows 7" BROWSER_NAME="Chrome"
+  - BROWSER_PLATFORM="Windows 7" BROWSER_NAME="Firefox"
+  - BROWSER_PLATFORM="Windows 7" BROWSER_NAME="Opera"
+  - BROWSER_PLATFORM="Windows 10" BROWSER_NAME="MicrosoftEdge"
+  - BROWSER_PLATFORM="macOS 10.12" BROWSER_NAME="Safari"
+

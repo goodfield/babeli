@@ -6,19 +6,21 @@ require 'rails/test_help'
 require 'capybara/rails'
 require 'selenium/webdriver'
 
-if ENV['SAUCE_ACCESS_KEY']
-  Capybara.register_driver 'sauce' do |app|
+if ENV['TRAVIS']
+  capabilities = Selenium::WebDriver::Remote::Capabilities.send ENV['BROWSER_NAME']
+  capabilities.version = ENV['BROWSER_VERSION']
+  capabilities.platform = ENV['BROWSER_PLATFORM']
+  capabilities['tunnel-identifier'] = ENV['TRAVIS_JOB_NUMBER']
+  capabilities['name'] = "Travis ##{ENV['TRAVIS_JOB_NUMBER']}"
+
+  url = "https://#{ENV['SAUCE_USERNAME']}:#{ENV['SAUCE_ACCESS_KEY']}@ondemand.saucelabs.com:443/wd/hub"
+
+  Capybara.register_driver :selenium do |app|
     Capybara::Selenium::Driver.new(app,
                                    browser: :remote,
-                                   url: "https://#{ENV['SAUCE_USERNAME']}:#{ENV['SAUCE_ACCESS_KEY']}@ondemand.saucelabs.com:443/wd/hub",
-                                   desired_capabilities: $selenium_capabilities)
+                                   url: url,
+                                   desired_capabilities: capabilities)
   end
-
-  Capybara.default_driver = 'sauce'
-  Capybara.javascript_driver = 'sauce'
-else
-  puts $selenium_capabilities
-  Capybara.default_driver = :selenium
 end
 
 class ActiveSupport::TestCase
