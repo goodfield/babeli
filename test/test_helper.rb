@@ -10,7 +10,8 @@ if ENV['SAUCE_ACCESS_KEY']
   caps = {
       :platform => 'Windows 7',
       :browserName => 'Chrome',
-      :version => '45'
+      :version => '45',
+      'tunnel-identifier' => ENV['TRAVIS_JOB_NUMBER']
   }
 
   Capybara.register_driver 'sauce' do |app|
