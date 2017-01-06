@@ -13,9 +13,15 @@ if ENV['SAUCE_ACCESS_KEY']
       :version => '45'
   }
 
-  Capybara.default_driver = Selenium::WebDriver.for(:remote,
-                                   :url => "https://#{ENV['SAUCE_USERNAME']}:#{ENV['SAUCE_ACCESS_KEY']}@ondemand.saucelabs.com:443/wd/hub",
-                                   :desired_capabilities => caps)
+  Capybara.register_driver 'sauce' do |app|
+    Capybara::Selenium::Driver.new(app,
+                                   browser: :remote,
+                                   url: "https://#{ENV['SAUCE_USERNAME']}:#{ENV['SAUCE_ACCESS_KEY']}@ondemand.saucelabs.com:443/wd/hub",
+                                   desired_capabilities: caps)
+  end
+
+  Capybara.default_driver = 'sauce'
+  Capybara.javascript_driver = 'sauce'
 else
   Capybara.default_driver = :selenium
 end
