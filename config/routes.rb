@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
 
+  resources :projects
+
   get 'dashboard/index'
 
   devise_for :users
 
-  root to: 'dashboard#index'
+  root to: 'projects#index'
 
 end
