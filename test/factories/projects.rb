@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: categories
+# Table name: projects
 #
 #  id          :integer          not null, primary key
 #  key         :string
@@ -8,16 +8,12 @@
 #  description :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  version_id  :integer
-#
-# Indexes
-#
-#  index_categories_on_version_id  (version_id)
 #
 
-class Category < ApplicationRecord
-
-  belongs_to :version
-  has_many :translations, dependent: :destroy, autosave: true
-
+FactoryGirl.define do
+  factory :project do
+    key { SecureRandom.uuid }
+    name { FFaker::Lorem.word }
+    description { FFaker::Lorem.words(10) }
+  end
 end

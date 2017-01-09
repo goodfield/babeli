@@ -13,15 +13,9 @@
 #  index_translations_on_category_id  (category_id)
 #
 
-require 'test_helper'
-
-class TranslationTest < ActiveSupport::TestCase
-
-  should belong_to(:category)
-  should have_many(:translation_values).dependent(:destroy)
-
-  test 'should be created by factory girl' do
-    FactoryGirl.create(:translation)
+FactoryGirl.define do
+  factory :translation do
+    key { SecureRandom.uuid }
+    category { FactoryGirl.create(:category) }
   end
-
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170108172129) do
+ActiveRecord::Schema.define(version: 20170108194538) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "key"
@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 20170108172129) do
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "version_id"
+    t.index ["version_id"], name: "index_categories_on_version_id"
   end
 
   create_table "languages", force: :cascade do |t|
@@ -26,12 +28,13 @@ ActiveRecord::Schema.define(version: 20170108172129) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "project_modules", force: :cascade do |t|
-    t.string   "key"
-    t.string   "name"
-    t.string   "description"
+  create_table "project_languages", force: :cascade do |t|
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "project_id"
+    t.integer  "language_id"
+    t.index ["language_id"], name: "index_project_languages_on_language_id"
+    t.index ["project_id"], name: "index_project_languages_on_project_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -44,14 +47,20 @@ ActiveRecord::Schema.define(version: 20170108172129) do
 
   create_table "translation_values", force: :cascade do |t|
     t.string   "value"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "translation_id"
+    t.integer  "project_language_id"
+    t.index ["project_language_id"], name: "index_translation_values_on_project_language_id"
+    t.index ["translation_id"], name: "index_translation_values_on_translation_id"
   end
 
   create_table "translations", force: :cascade do |t|
     t.string   "key"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "category_id"
+    t.index ["category_id"], name: "index_translations_on_category_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -71,6 +80,14 @@ ActiveRecord::Schema.define(version: 20170108172129) do
     t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "versions", force: :cascade do |t|
+    t.string   "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "project_id"
+    t.index ["project_id"], name: "index_versions_on_project_id"
   end
 
 end

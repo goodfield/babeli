@@ -15,15 +15,10 @@
 #  index_translation_values_on_translation_id       (translation_id)
 #
 
-require 'test_helper'
-
-class TranslationValueTest < ActiveSupport::TestCase
-
-  should belong_to(:translation)
-  should belong_to(:project_language)
-
-  test 'should be created by factory girl' do
-    FactoryGirl.create(:translation_value)
+FactoryGirl.define do
+  factory :translation_value do
+    value { FFaker::Lorem.word }
+    translation { FactoryGirl.create(:translation) }
+    project_language { FactoryGirl.create(:project_language) }
   end
-
 end

@@ -15,15 +15,11 @@
 #  index_categories_on_version_id  (version_id)
 #
 
-require 'test_helper'
-
-class CategoryTest < ActiveSupport::TestCase
-
-  should belong_to(:version)
-  should have_many(:translations).dependent(:destroy)
-
-  test 'should be created by factory girl' do
-    FactoryGirl.create(:category)
+FactoryGirl.define do
+  factory :category do
+    key { SecureRandom.uuid }
+    name { FFaker::Lorem.word }
+    description { FFaker::Lorem.words(10) }
+    version { FactoryGirl.create(:version) }
   end
-
 end

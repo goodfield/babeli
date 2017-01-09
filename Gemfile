@@ -13,13 +13,14 @@ gem 'devise', '~> 4.2'
 gem 'bootstrap', '~> 4.0.0.alpha5'
 
 group :development, :test do
-
+  gem 'annotate'
 end
 
 group :test do
   gem 'minitest-reporters'
   gem 'factory_girl_rails'
   gem 'ffaker'
+  gem 'shoulda'
   gem 'coveralls'
   gem 'capybara'
   gem 'selenium-webdriver'

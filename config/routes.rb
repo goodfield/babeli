@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'projects/show'
+
   resources :projects
 
   get 'dashboard/index'
