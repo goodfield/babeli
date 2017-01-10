@@ -10,27 +10,28 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'devise', '~> 4.2'
 
-gem 'bootstrap', '~> 4.0.0.alpha5'
+gem 'bootstrap', '~> 4.0.0.alpha6'
+gem 'react-rails', '~> 1.10'
 
 group :development, :test do
   gem 'annotate'
 end
 
 group :test do
-  gem 'minitest-reporters'
-  gem 'factory_girl_rails'
-  gem 'ffaker'
-  gem 'shoulda'
-  gem 'coveralls'
-  gem 'capybara'
-  gem 'selenium-webdriver'
+  gem 'minitest-reporters', '~> 1.1'
+  gem 'factory_girl_rails', '~> 4.8'
+  gem 'ffaker', '~> 2.4'
+  gem 'shoulda', '~> 3.5'
+  gem 'coveralls', '~> 0.8'
+  gem 'capybara', '~> 2.11'
+  gem 'selenium-webdriver', '~> 3.0'
 end
 
 group :development do
-  gem 'web-console'
+  gem 'web-console', '~> 3.4'
   gem 'listen', '~> 3.0.5'
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring', '~> 2.0'
+  gem 'spring-watcher-listen', '~> 2.0'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
