@@ -15,6 +15,8 @@ gem 'react-rails', '~> 1.10'
 
 group :development, :test do
   gem 'annotate'
+  gem 'guard-livereload', '~> 2.5', require: false
+  gem 'rack-livereload'
 end
 
 group :test do
