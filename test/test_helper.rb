@@ -18,6 +18,8 @@ if ENV['TRAVIS']
 
   url = "https://#{ENV['SAUCE_USERNAME']}:#{ENV['SAUCE_ACCESS_KEY']}@ondemand.saucelabs.com:443/wd/hub"
 
+  Capybara.server_port = 8000
+
   Capybara.register_driver :selenium do |app|
     Capybara::Selenium::Driver.new(app,
                                    browser: :remote,
